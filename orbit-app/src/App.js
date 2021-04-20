@@ -8,6 +8,10 @@ import './App.css';
 import AppShell from './AppShell';
 import { AuthProvider } from './context/AuthContext';
 import { FetchProvider } from './context/FetchContext';
+
+import PrivateRoute from './util/PrivateRoute'
+import AdminRoute from './util/AdminRoute'
+
 import Account from './pages/Account';
 import Dashboard from './pages/Dashboard';
 import FourOFour from './pages/FourOFour';
@@ -30,31 +34,31 @@ const AppRoutes = () => {
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/dashboard">
+      <PrivateRoute path="/dashboard">
         <AppShell>
           <Dashboard />
         </AppShell>
-      </Route>
-      <Route path="/inventory">
+      </PrivateRoute>
+      <AdminRoute path="/inventory">
         <AppShell>
           <Inventory />
         </AppShell>
-      </Route>
-      <Route path="/account">
+      </AdminRoute>
+      <PrivateRoute path="/account">
         <AppShell>
           <Account />
         </AppShell>
-      </Route>
-      <Route path="/settings">
+      </PrivateRoute>
+      <PrivateRoute path="/settings">
         <AppShell>
           <Settings />
         </AppShell>
-      </Route>
-      <Route path="/users">
+      </PrivateRoute>
+      <AdminRoute path="/users">
         <AppShell>
           <Users />
         </AppShell>
-      </Route>
+      </AdminRoute>
       <Route path="*">
         <FourOFour />
       </Route>

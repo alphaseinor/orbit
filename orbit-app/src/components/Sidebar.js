@@ -86,7 +86,7 @@ const Sidebar = () => {
       <div className="mt-20">
         {navItems.map((navItem, i) => (
           <>
-            {navItem.allowedRoles.includes(role) && (
+            {authContext.isAdmin() && navItem.allowedRoles.includes('admin') && (
               <NavItemContainer key={i}>
                 <NavItem navItem={navItem} />
               </NavItemContainer>
