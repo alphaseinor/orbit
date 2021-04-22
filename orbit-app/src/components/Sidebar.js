@@ -84,15 +84,13 @@ const Sidebar = () => {
         <img src={logo} rel="logo" alt="Logo" />
       </div>
       <div className="mt-20">
-        {navItems.map((navItem, i) => (
-          <>
-            {authContext.isAdmin() && navItem.allowedRoles.includes('admin') && (
-              <NavItemContainer key={i}>
-                <NavItem navItem={navItem} />
-              </NavItemContainer>
-            )}
-          </>
-        ))}
+        {navItems.map((navItem, i) => navItem.allowedRoles.includes(role) && (
+            <NavItemContainer key={i}>
+              <NavItem navItem={navItem} />
+            </NavItemContainer>
+          )
+
+        )}
       </div>
     </section>
   );
