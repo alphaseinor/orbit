@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -12,18 +12,21 @@ import { FetchProvider } from './context/FetchContext';
 import PrivateRoute from './util/PrivateRoute'
 import AdminRoute from './util/AdminRoute'
 
-import Account from './pages/Account';
-import Dashboard from './pages/Dashboard';
 import FourOFour from './pages/FourOFour';
 import Home from './pages/Home';
-import Inventory from './pages/Inventory';
 import Login from './pages/Login';
-import Settings from './pages/Settings';
 import Signup from './pages/Signup';
-import Users from './pages/Users';
+
+
+const Dashboard = lazy(()=> import('./pages/Dashboard'))
+const Inventory = lazy(()=> import('./pages/Inventory'))
+const Account = lazy(()=> import('./pages/Account'))
+const Settings = lazy(()=> import('./pages/Settings'))
+const Users = lazy(()=> import('./pages/Users'))
 
 const AppRoutes = () => {
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <Switch>
       <Route path="/login">
         <Login />
@@ -63,6 +66,7 @@ const AppRoutes = () => {
         <FourOFour />
       </Route>
     </Switch>
+    </Suspense>
   );
 };
 
